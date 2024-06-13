@@ -1,5 +1,5 @@
 import streamlit as st
-
+import os
 import openai
 import llama_index
 from llama_index.llms.openai import OpenAI
