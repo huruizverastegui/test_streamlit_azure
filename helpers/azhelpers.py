@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-azure_storage_account_name = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_NAME")
+azure_storage_account_name = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_NAME"])
 azure_storage_account_key = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_KEY"])
 connection_string_blob = str.encode(os.environ["CONNECTION_STRING_BLOB"])
 container_name = None
