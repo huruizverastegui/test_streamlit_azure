@@ -21,9 +21,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-azure_storage_account_name = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_NAME"])
-azure_storage_account_key = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_KEY"])
-connection_string_blob = str.encode(os.environ["CONNECTION_STRING_BLOB"])
+azure_storage_account_name = os.environ["AZURE_STORAGE_ACCOUNT_NAME"]
+azure_storage_account_key = os.environ["AZURE_STORAGE_ACCOUNT_KEY"]
+connection_string_blob = os.environ["CONNECTION_STRING_BLOB"]
 container_name = None
 
 blob_service_client = BlobServiceClient.from_connection_string(f"DefaultEndpointsProtocol=https;AccountName={azure_storage_account_name};AccountKey={azure_storage_account_key}")
