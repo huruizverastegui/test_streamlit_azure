@@ -26,6 +26,22 @@ def write_file_list():
         st.dataframe(blob_list, use_container_width=True)
     return
 
+# test 
+
+
+azure_storage_account_name = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_NAME"])
+azure_storage_account_key = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_KEY"])
+connection_string_blob = str.encode(os.environ["CONNECTION_STRING_BLOB"])
+container_name = None
+
+st.write(f"DefaultEndpointsProtocol=https;AccountName={azure_storage_account_name};AccountKey={azure_storage_account_key}")
+
+
+
+#####
+
+
+
 with st.expander("Create a new Knowledge Base", expanded=False):
     new_container_name = st.text_input("Name your new Knowledge Base")
     create_container = st.button("Create", type='primary')
