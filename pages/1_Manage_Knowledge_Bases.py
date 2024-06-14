@@ -24,21 +24,4 @@ azure_storage_account_key = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_KEY"])
 connection_string_blob = str.encode(os.environ["CONNECTION_STRING_BLOB"])
 container_name = None
 
-blob_service_client = BlobServiceClient.from_connection_string(f"DefaultEndpointsProtocol=https;AccountName={azure_storage_account_name};AccountKey={azure_storage_account_key}")
-
-with st.expander("Create a new Knowledge Base", expanded=False):
-    new_container_name = st.text_input("Name your new Knowledge Base")
-    create_container = st.button("Create", type='primary')
-    if create_container:
-        created_container_name = create_new_container(new_container_name)
-        st.success(f"Created new Knowledge Base: {new_container_name}")
-        container_name = created_container_name
-
-
-container_list = list()
-containers = blob_service_client.list_containers()
-for container in containers:
-    if "genai-" in container.name:
-        container_list.append(container.name)
-    
-st.write(list_all_containers())
+st.write(azure_storage_account_name)
