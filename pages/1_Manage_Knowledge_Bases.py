@@ -43,15 +43,4 @@ with left:
          delete_all_files(container_name)
          st.success(f"Deleted all files in {container_name}")
 with right:
-    file_list = st.container()
-    write_file_list()
-        
-        
-
-uploaded_files = st.file_uploader(f"Add files to {container_name}", type=["pdf", "docx"], accept_multiple_files=True)
-upload_confirm = st.button("Upload now")
-if upload_confirm:
-    for uploaded_file in uploaded_files:
-        upload_to_azure_storage(uploaded_file, container_name)
-        st.success(f"Uploaded {uploaded_file.name} to {container_name}")
-    write_file_list()
+  st.write(f"Hello")
