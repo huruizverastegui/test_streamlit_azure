@@ -28,6 +28,10 @@ def write_file_list():
 
 # test 
 
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 azure_storage_account_name = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_NAME"])
 azure_storage_account_key = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_KEY"])
