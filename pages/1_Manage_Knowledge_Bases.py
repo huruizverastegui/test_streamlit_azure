@@ -18,13 +18,13 @@ from llama_index.core.extractors import (
 from llama_index.core.node_parser import TokenTextSplitter
 from helpers.azhelpers import upload_to_azure_storage, list_all_containers, list_all_files, delete_all_files, create_new_container
 
-def write_file_list():
-    blob_list = list_all_files(container_name)
-    file_list.empty()
-    with file_list:
-        st.write(f"Files in {container_name}:")
-        st.dataframe(blob_list, use_container_width=True)
-    return
+
+azure_storage_account_name = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_NAME"])
+azure_storage_account_key = str.encode(os.environ["AZURE_STORAGE_ACCOUNT_KEY"])
+connection_string_blob = str.encode(os.environ["CONNECTION_STRING_BLOB"])
+container_name = None
+
+blob_service_client = BlobServiceClient.from_connection_string(f"DefaultEndpointsProtocol=https;AccountName={azure_storage_account_name};AccountKey={azure_storage_account_key}")
 
 with st.expander("Create a new Knowledge Base", expanded=False):
     new_container_name = st.text_input("Name your new Knowledge Base")
@@ -35,12 +35,10 @@ with st.expander("Create a new Knowledge Base", expanded=False):
         container_name = created_container_name
 
 
-left,right = st.columns(2)
-with left:
-   container_name = st.selectbox("Manage this Knowledge Base", list_all_containers())
-   delete_container = st.button(f"Delete all files in {container_name}",type='primary')
-   if delete_container:
-         delete_all_files(container_name)
-         st.success(f"Deleted all files in {container_name}")
-with right:
-  st.write(f"Hello")
+container_list = list()
+containers = blob_service_client.list_containers()
+for container in containers:
+    if "genai-" in container.name:
+        container_list.append(container.name)
+    
+st.write(list_all_containers())
