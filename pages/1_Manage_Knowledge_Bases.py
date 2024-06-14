@@ -26,23 +26,7 @@ def write_file_list():
         st.dataframe(blob_list, use_container_width=True)
     return
 
-# test 
 
-import os 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-azure_storage_account_name = os.environ["AZURE_STORAGE_ACCOUNT_NAME"]
-azure_storage_account_key = os.environ["AZURE_STORAGE_ACCOUNT_KEY"]
-connection_string_blob = os.environ["CONNECTION_STRING_BLOB"]
-container_name = None
-
-st.write(f"DefaultEndpointsProtocol=https;AccountName={azure_storage_account_name};AccountKey={azure_storage_account_key}")
-
-
-
-#####
 
 
 
